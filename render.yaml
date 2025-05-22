@@ -2,12 +2,27 @@ services:
   - type: web
     name: n8n
     env: docker
-    plan: free
+    plan: starter
     autoDeploy: true
     dockerfilePath: ./docker/images/n8n/Dockerfile
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
     envVars:
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_HOST
+        value: dpg-d0njl90dl3ps73abjra0-a
+      - key: DB_POSTGRESDB_PORT
+        value: 5432
+      - key: DB_POSTGRESDB_DATABASE
+        value: n8n
+      - key: DB_POSTGRESDB_USER
+        value: n8n
+      - key: DB_POSTGRESDB_PASSWORD
+        value: fhDbjJ8xmu9pAtcwEIrNQo7GwhUtPffF
       - key: N8N_BASIC_AUTH_ACTIVE
-        value: true
+        value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
@@ -15,6 +30,6 @@ services:
       - key: WEBHOOK_URL
         value: https://n8n-persiscal.onrender.com
       - key: N8N_HOST
-        value: n8n.onrender.com
+				value: n8n.onrender.com
       - key: N8N_PORT
         value: 5678
