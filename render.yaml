@@ -6,8 +6,11 @@ services:
     autoDeploy: true
     dockerfilePath: ./docker/images/n8n/Dockerfile
     disk:
-      name: n8n-data
-      mountPath: /home/node/.n8n
+      - name: n8n-data
+        mountPath: /home/node/.n8n
+      - name: upload-temp
+        mountPath: /uploads
+        sizeGB: 1
     envVars:
       - key: DB_TYPE
         value: postgresdb
@@ -30,6 +33,6 @@ services:
       - key: WEBHOOK_URL
         value: https://n8n-persiscal.onrender.com
       - key: N8N_HOST
-				value: n8n.onrender.com
+        value: n8n.onrender.com
       - key: N8N_PORT
         value: 5678
