@@ -1,7 +1,13 @@
 {
   "name": "uploader",
   "version": "1.0.0",
+  "description": "Servidor para subir y servir imágenes desde n8n en Render",
+  "main": "static-server.js",
+  "scripts": {
+    "start": "node static-server.js"
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "multer": "1.4.5-lts.1"
   }
 }
