@@ -23,7 +23,8 @@ app.post('/upload', upload.single('file'), (req, res) => {
 // Servir imágenes estáticas
 app.use('/uploads', express.static('/uploads'));
 
-// Escuchar en puerto 5679
-app.listen(5679, () => {
-  console.log('Servidor de archivos escuchando en puerto 5679');
+// Escuchar en el puerto que Render provee
+const port = process.env.PORT || 5679;
+app.listen(port, () => {
+  console.log(`Servidor de archivos escuchando en puerto ${port}`);
 });
