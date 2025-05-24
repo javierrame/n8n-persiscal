@@ -41,8 +41,12 @@ COPY docker/images/n8n/docker-entrypoint.sh /
 # Crear carpeta /uploads y copiar el server de archivos
 RUN mkdir -p /uploads
 COPY docker/images/n8n/static-server.js /static-server.js
-RUN npm install express
 
+# Copiar la carpeta con express preinstalado
+COPY docker/images/n8n/uploader /home/node/uploader
+
+# Instalar express dentro del contenedor, en el lugar correcto
+RUN cd /home/node/uploader && npm install
 
 # Setup the Task Runner Launcher
 ARG TARGETPLATFORM
