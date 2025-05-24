@@ -1,10 +1,6 @@
-// static-server.js
-const express = require('express');
+const express = require('/home/node/uploader/node_modules/express');
 const app = express();
-
 app.use('/uploads', express.static('/uploads'));
-
-const port = 5679;
-app.listen(port, () => {
-  console.log(`Static file server corriendo en http://localhost:${port}`);
+app.listen(5679, () => {
+  console.log('Servidor de archivos escuchando en puerto 5679');
 });
