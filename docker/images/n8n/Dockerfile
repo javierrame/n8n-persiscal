@@ -38,6 +38,12 @@ WORKDIR /home/node
 COPY --from=builder /compiled /usr/local/lib/node_modules/n8n
 COPY docker/images/n8n/docker-entrypoint.sh /
 
+# Crear carpeta /uploads y copiar el server de archivos
+RUN mkdir -p /uploads
+COPY docker/images/n8n/static-server.js /static-server.js
+RUN npm install express
+
+
 # Setup the Task Runner Launcher
 ARG TARGETPLATFORM
 ARG LAUNCHER_VERSION=1.1.2
@@ -67,4 +73,4 @@ RUN \
 
 ENV SHELL /bin/sh
 USER node
-ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+ENTRYPOINT /docker-entrypoint.sh & node /static-server.js
