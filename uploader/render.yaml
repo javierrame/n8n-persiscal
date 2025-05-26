@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: uploader
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node static-server.js"
+    disk:
+      name: uploader-storage
+      mountPath: uploads
+      sizeGB: 1
