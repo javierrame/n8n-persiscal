@@ -77,4 +77,4 @@ RUN \
 
 ENV SHELL /bin/sh
 USER node
-ENTRYPOINT /docker-entrypoint.sh & node /static-server.js
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
